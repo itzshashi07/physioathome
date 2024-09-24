@@ -39,21 +39,104 @@
             z-index: 50;
         }
 
-        /* Video styling */
-        .hero-video {
+        /* Image slider styles */
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .slider img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -1;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
 
-        /* Text visibility over video */
+        .slider img.active {
+            opacity: 1;
+        }
+
+        /* Text visibility over images */
         .hero-overlay {
             background: rgba(0, 0, 0, 0.5);
             z-index: 1;
+        }
+
+        /* Logo inside a circle */
+        .logo-circle {
+            border: 3px solid #00b4d8; /* Optional border color */
+            transition: transform 0.3s ease; /* Smooth transition for scaling */
+        }
+
+        /* Hover effect on logo */
+        .logo-circle:hover {
+            transform: scale(1.1); /* Slight scaling effect */
+        }
+
+        /* Underline hover effect for title */
+        .hover-effect-title {
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            color: #540a45;
+        }
+
+        .hover-effect-title::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: #00b4d8;
+            left: 0;
+            bottom: -5px;
+            transition: all 0.3s ease;
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+
+        .hover-effect-title:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Hover effect for menu items */
+        .hover-effect {
+            position: relative;
+            color: #540a45;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        /* Underline hover effect for menu items */
+        .hover-effect::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #00b4d8;
+            left: 0;
+            bottom: -2px;
+            transition: all 0.3s ease;
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+
+        .hover-effect:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Change text color on hover */
+        .hover-effect:hover {
+            color: #00b4d8;
         }
     </style>
 </head>
@@ -63,9 +146,12 @@
     <!-- Navbar -->
     <header class="bg-white shadow-lg fixed w-full z-30">
         <div class="container mx-auto flex items-center justify-between py-4">
+            <!-- Logo inside a circle -->
             <a href="#" class="flex items-center space-x-3">
-                <img src="img/Logo1.png" alt="Physio at Home Logo" class="w-12 h-12">
-                <span class="font-bold text-xl text-gray-800 hover-effect">Physio at Home</span>
+                <div class="logo-circle bg-gray-100 rounded-full p-1">
+                    <img src="img/Logo1.png" alt="Physio at Home Logo" class="w-12 h-12 rounded-full object-cover">
+                </div>
+                <span class="font-bold text-2xl text-gray-800 relative hover-effect-title">Physio at Home</span>
             </a>
             <input type="checkbox" id="menu-btn" class="menu-btn hidden">
             <label for="menu-btn" class="menu-toggle md:hidden">
@@ -74,11 +160,12 @@
                 </svg>
             </label>
             <nav class="menu fixed inset-0 bg-white p-8 flex flex-col items-center md:relative md:flex md:flex-row md:space-x-8 md:bg-transparent md:translate-x-0">
+                <!-- Navbar Menu with Hover Effect -->
                 <ul class="flex flex-col space-y-6 md:space-y-0 md:flex-row md:space-x-8 text-gray-600">
-                    <li><a href="#" class="hover-effect">Home</a></li>
-                    <li><a href="#about" class="hover-effect">About</a></li>
-                    <li><a href="#services" class="hover-effect">Services</a></li>
-                    <li><a href="#contact" class="hover-effect">Contact</a></li>
+                    <li><a href="#" class="hover-effect menu-link">Home</a></li>
+                    <li><a href="#about" class="hover-effect menu-link">About</a></li>
+                    <li><a href="#services" class="hover-effect menu-link">Services</a></li>
+                    <li><a href="#contact" class="hover-effect menu-link">Contact</a></li>
                 </ul>
                 <label for="menu-btn" class="text-gray-800 absolute top-6 right-6 md:hidden cursor-pointer">
                     <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -89,18 +176,44 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Image Slider -->
     <section class="relative h-screen">
-        <video autoplay muted loop class="hero-video">
-            <source src="https://videos.pexels.com/video-files/6111095/6111095-uhd_2560_1440_25fps.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <div class="slider">
+            <img src="https://img.freepik.com/free-photo/woman-practicing-exercise-physiotherapy-session_23-2149115591.jpg?size=626&ext=jpg&ga=GA1.1.1153687272.1716446275&semt=ais_hybrid" class="active">
+            <img src="https://img.freepik.com/free-photo/woman-having-physiotherapy-session-clinic_23-2149115632.jpg?size=626&ext=jpg&ga=GA1.1.1153687272.1716446275&semt=ais_hybrid">
+            <img src="https://img.freepik.com/free-photo/physiotherapist-giving-massage-her-patient_23-2149115647.jpg?size=626&ext=jpg&ga=GA1.1.1153687272.1716446275&semt=ais_hybrid">
+        </div>
         <div class="absolute inset-0 flex flex-col justify-center items-center hero-overlay">
             <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 hover-effect">Move Better, Feel Better</h1>
             <p class="text-lg text-white mb-6">Exceptional Physiotherapy Care Tailored for You</p>
             <a href="#contact" class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition duration-300">Book an Appointment</a>
         </div>
     </section>
+
+    <!-- JavaScript for Image Slider & Sidebar Hide on Menu Click -->
+    <script>
+        const images = document.querySelectorAll('.slider img');
+        let currentIndex = 0;
+
+        function changeImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+
+        setInterval(changeImage, 3000); // Change image every 3 seconds
+
+        // Hide sidebar when a menu link is clicked
+        const menuLinks = document.querySelectorAll('.menu-link');
+        const menuBtn = document.getElementById('menu-btn');
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                menuBtn.checked = false; // Uncheck the checkbox to hide the sidebar
+            });
+        });
+    </script>
+
 
     <!-- About Section -->
     <section id="about" class="py-16 bg-white">
@@ -151,74 +264,106 @@
         </div>
     </section>
 
-    <!-- Testimonial Section -->
+
 <!-- Testimonial Section -->
 <section id="testimonials" class="py-16 bg-gray-50">
   <div class="container mx-auto px-4">
-      <div class="text-center mb-8">
-          <h2 class="text-3xl font-bold text-gray-800">Customer Reviews</h2>
-          <p class="text-gray-600 mt-2">What our customers are saying...</p>
-      </div>
-      <div class="relative overflow-hidden">
-          <!-- Left and Right Arrows -->
-          <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-700 p-2 rounded-full shadow-md hover:bg-gray-200 z-10"><</button>
-          <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-700 p-2 rounded-full shadow-md hover:bg-gray-200 z-10">></button>
+    <div class="text-center mb-8 relative">
+      <h2 class="text-3xl font-bold text-gray-800 relative inline-block hover-effect-title">Customer Reviews</h2>
+      <p class="text-gray-600 mt-2">What our customers are saying...</p>
+    </div>
 
-          <!-- Testimonials Slider -->
-          <div id="testimonial-slider" class="flex space-x-4 transition-transform duration-500 ease-in-out">
-              <!-- Testimonial 1 -->
-              <div class="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg text-center flex-shrink-0">
-                  <img src="/img/men.jpeg" alt="Abhishek Anand" class="w-24 h-24 mx-auto rounded-full mb-4">
-                  <h3 class="text-xl font-semibold text-gray-800">Abhishek Anand</h3>
-                  <p class="text-gray-600 text-sm">May 18, 2024</p>
-                  <p class="text-gray-600 mt-4">I visited CB Physiotherapy in Safdurjung Enclave with severe shoulder pain. Customer service is friendly. Dr. Shristi Kumari did an excellent job! Keep it up!</p>
-              </div>
-              <!-- Testimonial 2 -->
-              <div class="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg text-center flex-shrink-0">
-                  <img src="/img/women.jpeg" alt="Shivani" class="w-24 h-24 mx-auto rounded-full mb-4">
-                  <h3 class="text-xl font-semibold text-gray-800">Shivani</h3>
-                  <p class="text-gray-600 text-sm">Oct 19, 2023</p>
-                  <p class="text-gray-600 mt-4">I had a great experience here and highly recommend it to anyone who wants relief from body pain. Thank you so much for the support.</p>
-              </div>
-              <!-- Testimonial 3 -->
-              <div class="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg text-center flex-shrink-0">
-                  <img src="/img/women.jpeg" alt="Khushboo" class="w-24 h-24 mx-auto rounded-full mb-4">
-                  <h3 class="text-xl font-semibold text-gray-800">Khushboo</h3>
-                  <p class="text-gray-600 text-sm">Oct 19, 2023</p>
-                  <p class="text-gray-600 mt-4">I have been suffering from heel inflammation for six months. Dr. Shristi Kumari gave me fine treatment. Now I feel much better. Grateful for her wonderful care.</p>
-              </div>
-              <!-- Testimonial 4 -->
-              <div class="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg text-center flex-shrink-0">
-                  <img src="/img/men.jpeg" alt="Shashi" class="w-24 h-24 mx-auto rounded-full mb-4">
-                  <h3 class="text-xl font-semibold text-gray-800">Shashi</h3>
-                  <p class="text-gray-600 text-sm">Oct 05, 2023</p>
-                  <p class="text-gray-600 mt-4">I've had lower back pain for a year. After 6-7 sessions from Dr. Shristi Kumari, my long-term back pain was relieved. Cooperative staff, great atmosphere, and cleanliness. Recommended for all.</p>
-              </div>
-              <!-- Testimonial 5 -->
-              <div class="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg text-center flex-shrink-0">
-                  <img src="/img/men.jpeg" alt="Aditya" class="w-24 h-24 mx-auto rounded-full mb-4">
-                  <h3 class="text-xl font-semibold text-gray-800">Aditya</h3>
-                  <p class="text-gray-600 text-sm">Oct 05, 2023</p>
-                  <p class="text-gray-600 mt-4">Five stars for the treatment, Dr. Shristi Kumari. Good treatment. I recommend her to anyone who needs physiotherapy treatment.</p>
-              </div>
-              <!-- Testimonial 6 -->
-              <div class="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg text-center flex-shrink-0">
-                  <img src="/img/men.jpeg" alt="Shubham" class="w-24 h-24 mx-auto rounded-full mb-4">
-                  <h3 class="text-xl font-semibold text-gray-800">Shubham</h3>
-                  <p class="text-gray-600 text-sm">Oct 03, 2023</p>
-                  <p class="text-gray-600 mt-4">I am very satisfied with CB Physiotherapy Service. My left side body was painful. After therapy with Dr. Shristi Kumari, I feel good. No more body pain. Thank you, Dr. Kumari!</p>
-              </div>
-              <!-- Testimonial 7 -->
-              <div class="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg text-center flex-shrink-0">
-                  <img src="/img/women.jpeg" alt="Shreya" class="w-24 h-24 mx-auto rounded-full mb-4">
-                  <h3 class="text-xl font-semibold text-gray-800">Shreya</h3>
-                  <p class="text-gray-600 text-sm">Oct 02, 2023</p>
-                  <p class="text-gray-600 mt-4">After a ligament injury, I took physiotherapy sessions from CB. After 4-5 sessions, I got relief. Dr. Shristi Kumari was patient with me, and her exercises were very helpful.</p>
-              </div>
-          </div>
+    <div class="relative overflow-hidden">
+      <!-- Left and Right Arrows -->
+      <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-700 p-2 rounded-full shadow-md hover:bg-gray-200 z-10">
+        &lt;
+      </button>
+      <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-700 p-2 rounded-full shadow-md hover:bg-gray-200 z-10">
+        &gt;
+      </button>
+
+      <!-- Testimonials Slider -->
+      <div id="testimonial-slider" class="flex space-x-4 transition-transform duration-500 ease-in-out">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg text-center flex-shrink-0 transition-transform duration-300 hover:scale-105 hover:bg-[#00b4d8] hover:shadow-xl hover:bg-opacity-80">
+          <img src="/img/men.jpeg" alt="Abhishek Anand" class="w-24 h-24 mx-auto rounded-full mb-4">
+          <h3 class="text-xl font-semibold text-gray-800">Abhishek Anand</h3>
+          <p class="text-gray-600 text-sm">May 18, 2024</p>
+          <p class="text-gray-600 mt-4">I visited CB Physiotherapy in Safdurjung Enclave with severe shoulder pain. Customer service is friendly. Dr. Shristi Kumari did an excellent job! Keep it up!</p>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg text-center flex-shrink-0 transition-transform duration-300 hover:scale-105 hover:bg-[#00b4d8] hover:shadow-xl hover:bg-opacity-80">
+          <img src="/img/women.jpeg" alt="Shivani" class="w-24 h-24 mx-auto rounded-full mb-4">
+          <h3 class="text-xl font-semibold text-gray-800">Shivani</h3>
+          <p class="text-gray-600 text-sm">Oct 19, 2023</p>
+          <p class="text-gray-600 mt-4">I had a great experience here and highly recommend it to anyone who wants relief from body pain. Thank you so much for the support.</p>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg text-center flex-shrink-0 transition-transform duration-300 hover:scale-105 hover:bg-[#00b4d8] hover:shadow-xl hover:bg-opacity-80">
+          <img src="/img/women.jpeg" alt="Khushboo" class="w-24 h-24 mx-auto rounded-full mb-4">
+          <h3 class="text-xl font-semibold text-gray-800">Khushboo</h3>
+          <p class="text-gray-600 text-sm">Oct 19, 2023</p>
+          <p class="text-gray-600 mt-4">I have been suffering from heel inflammation for six months. Dr. Shristi Kumari gave me fine treatment. Now I feel much better. Grateful for her wonderful care.</p>
+        </div>
+        <!-- Testimonial 4 -->
+        <div class="testimonial-card w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg text-center flex-shrink-0 transition-transform duration-300 hover:scale-105 hover:bg-[#00b4d8] hover:shadow-xl hover:bg-opacity-80">
+          <img src="/img/men.jpeg" alt="Shashi" class="w-24 h-24 mx-auto rounded-full mb-4">
+          <h3 class="text-xl font-semibold text-gray-800">Shashi</h3>
+          <p class="text-gray-600 text-sm">Oct 05, 2023</p>
+          <p class="text-gray-600 mt-4">I've had lower back pain for a year. After 6-7 sessions from Dr. Shristi Kumari, my long-term back pain was relieved. Cooperative staff, great atmosphere, and cleanliness. Recommended for all.</p>
+        </div>
+        <!-- Testimonial 5 -->
+        <div class="testimonial-card w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg text-center flex-shrink-0 transition-transform duration-300 hover:scale-105 hover:bg-[#00b4d8] hover:shadow-xl hover:bg-opacity-80">
+          <img src="/img/men.jpeg" alt="Aditya" class="w-24 h-24 mx-auto rounded-full mb-4">
+          <h3 class="text-xl font-semibold text-gray-800">Aditya</h3>
+          <p class="text-gray-600 text-sm">Oct 05, 2023</p>
+          <p class="text-gray-600 mt-4">Five stars for the treatment, Dr. Shristi Kumari. Good treatment. I recommend her to anyone who needs physiotherapy treatment.</p>
+        </div>
+        <!-- Testimonial 6 -->
+        <div class="testimonial-card w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg text-center flex-shrink-0 transition-transform duration-300 hover:scale-105 hover:bg-[#00b4d8] hover:shadow-xl hover:bg-opacity-80">
+          <img src="/img/men.jpeg" alt="Shubham" class="w-24 h-24 mx-auto rounded-full mb-4">
+          <h3 class="text-xl font-semibold text-gray-800">Shubham</h3>
+          <p class="text-gray-600 text-sm">Oct 03, 2023</p>
+          <p class="text-gray-600 mt-4">I am very satisfied with CB Physiotherapy Service. My left side body was painful. After therapy with Dr. Shristi Kumari, I feel good. No more body pain. Thank you, Dr. Kumari!</p>
+        </div>
+        <!-- Testimonial 7 -->
+        <div class="testimonial-card w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg text-center flex-shrink-0 transition-transform duration-300 hover:scale-105 hover:bg-[#00b4d8] hover:shadow-xl hover:bg-opacity-80">
+          <img src="/img/women.jpeg" alt="Shreya" class="w-24 h-24 mx-auto rounded-full mb-4">
+          <h3 class="text-xl font-semibold text-gray-800">Shreya</h3>
+          <p class="text-gray-600 text-sm">Oct 02, 2023</p>
+          <p class="text-gray-600 mt-4">After a ligament injury, I took physiotherapy sessions from CB. After 4-5 sessions, I got relief. Dr. Shristi Kumari was patient with me, and her exercises were very helpful.</p>
+        </div>
       </div>
+    </div>
   </div>
 </section>
+
+<style>
+  .hover-effect-title {
+    position: relative;
+    display: inline-block;
+  }
+
+  .hover-effect-title::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #00b4d8;
+    left: 0;
+    bottom: -5px;
+    transition: all 0.3s ease;
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+
+  .hover-effect-title:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+</style>
+
+
 
 <script>
   const slider = document.getElementById('testimonial-slider');

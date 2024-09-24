@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Exceptional Physiotherapy Care at Home by Dr. Shristi Kumari in Greater Noida & Noida. Move better, feel better with expert care tailored for you.">
+    <title>Physio at Home | Move Better, Feel Better</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lora', serif;
+        }
+
+        .menu-btn {
+            display: none;
+        }
+
+        .menu-btn:checked ~ .menu {
+            transform: translateX(0);
+        }
+
+        .menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .hover-effect:hover {
+            color: #4a5568;
+        }
+
+        .menu-toggle {
+            display: block;
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            cursor: pointer;
+            z-index: 50;
+        }
+
+        /* Video styling */
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Text visibility over video */
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Navbar -->
+    <header class="bg-white shadow-lg fixed w-full z-30">
+        <div class="container mx-auto flex items-center justify-between py-4">
+            <a href="#" class="flex items-center space-x-3">
+                <img src="img/Logo1.png" alt="Physio at Home Logo" class="w-12 h-12">
+                <span class="font-bold text-xl text-gray-800 hover-effect">Physio at Home</span>
+            </a>
+            <input type="checkbox" id="menu-btn" class="menu-btn hidden">
+            <label for="menu-btn" class="menu-toggle md:hidden">
+                <svg class="w-8 h-8 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </label>
+            <nav class="menu fixed inset-0 bg-white p-8 flex flex-col items-center md:relative md:flex md:flex-row md:space-x-8 md:bg-transparent md:translate-x-0">
+                <ul class="flex flex-col space-y-6 md:space-y-0 md:flex-row md:space-x-8 text-gray-600">
+                    <li><a href="#" class="hover-effect">Home</a></li>
+                    <li><a href="#about" class="hover-effect">About</a></li>
+                    <li><a href="#services" class="hover-effect">Services</a></li>
+                    <li><a href="#contact" class="hover-effect">Contact</a></li>
+                </ul>
+                <label for="menu-btn" class="text-gray-800 absolute top-6 right-6 md:hidden cursor-pointer">
+                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </label>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen">
+        <video autoplay muted loop class="hero-video">
+            <source src="https://videos.pexels.com/video-files/6111095/6111095-uhd_2560_1440_25fps.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="absolute inset-0 flex flex-col justify-center items-center hero-overlay">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 hover-effect">Move Better, Feel Better</h1>
+            <p class="text-lg text-white mb-6">Exceptional Physiotherapy Care Tailored for You</p>
+            <a href="#contact" class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition duration-300">Book an Appointment</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 hover-effect">About Dr. Shristi Kumari</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Dr. Shristi is a well-established physiotherapist providing home-based care in Greater Noida & Noida. She specializes in various physiotherapy treatments, ensuring that every patient receives the best possible care.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-semibold text-gray-800 hover-effect">Specialties</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li>Home Physiotherapist</li>
+                        <li>Tele Physiotherapist</li>
+                        <li>Sports & Ortho Physiotherapist</li>
+                        <li>Neuro Physiotherapist</li>
+                        <li>Women's Health & Pediatric Specialist</li>
+                        <li>Geriatric & Cardio Respiratory Physiotherapy</li>
+                        <li>Post-Surgery Rehabilitation</li>
+                    </ul>
+                </div>
+                <img src="https://img.freepik.com/free-photo/female-doctor-helping-patient-with-exercise_23-2148328469.jpg?ga=GA1.1.2063734750.1706093116&semt=ais_hybrid" alt="Physiotherapy Treatment" class="rounded-lg shadow-lg">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8 hover-effect">Our Services</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <img src="https://img.freepik.com/free-photo/female-physical-therapist-positioning-electrodes-customer-lower-back-muscle-treatment-clinic_662251-1625.jpg?size=626&ext=jpg&ga=GA1.1.2063734750.1706093116&semt=ais_hybrid" alt="Electrotherapy" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4 hover-effect">Electrotherapy</h3>
+                    <p class="text-gray-600">Advanced electrotherapy techniques for pain management and rehabilitation.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <img src="https://img.freepik.com/free-photo/young-woman-doctor-chiropractor-osteopath-fixing-lying-womans-back-with-hands-movements-visit-manual-therapy-clinic-professional-chiropractor-work_657921-303.jpg?ga=GA1.1.2063734750.1706093116&semt=ais_hybrid" alt="Manual Therapy" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4 hover-effect">Manual Therapy</h3>
+                    <p class="text-gray-600">Hands-on treatments to relieve pain, improve movement, and function.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <img src="https://img.freepik.com/free-photo/physiotherapist-doing-healing-treatment-womans-neckchiropractic-adjustment-pain-relief-conceptoffice-syndrome_657921-315.jpg?ga=GA1.1.2063734750.1706093116&semt=ais_hybrid" alt="Pain Management" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4 hover-effect">Pain Management</h3>
+                    <p class="text-gray-600">Effective solutions for managing chronic and acute pain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 hover-effect">Contact Us</h2>
+                <p class="text-gray-600 mt-4">Get in touch for physiotherapy appointments or more information.</p>
+            </div>
+            <div class="flex justify-center">
+                <a href="tel:+916201289171" class="bg-green-600 text-white px-6 py-3 rounded-md hover:bg-green-700 transition duration-300 mr-4">Call: +91 6201289171</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeyuLwMrZZN-sgUvA7nWTaRa5e7uN5q1MOocaPx_qq96EJJFw/viewform" target="_blank" class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition duration-300">Book Online</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Physio at Home. All rights reserved.</p>
+            <p>Service in Greater Noida & Noida</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
